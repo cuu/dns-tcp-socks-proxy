@@ -173,12 +173,13 @@ void tcp_query(void *query, response *buffer, int len) {
   srand(time(NULL));
 
   // select random dns server
-  in_addr_t remote_dns = inet_addr(dns_servers[rand() % (NUM_DNS - 1)]);
+  char*server = dns_servers[rand() % (NUM_DNS - 1)];
+  in_addr_t remote_dns = inet_addr(server);
   memcpy(tmp, "\x05\x01\x00\x01", 4);
   memcpy(tmp + 4, &remote_dns, 4);
   memcpy(tmp + 8, "\x00\x35", 2);
 
-  if (LOG == 1) { fprintf(LOG_FILE, "Using DNS server: %s\n", inet_ntoa(*(struct in_addr *)&remote_dns)); }
+  if (LOG == 1) { fprintf(LOG_FILE, "Using DNS server: %s,%s\n",server, inet_ntoa(*(struct in_addr *)&remote_dns)); }
 
   send(sock, tmp, 10, 0);
   recv(sock, tmp, 1024, 0);
