@@ -44,6 +44,8 @@ Any non-specified options will be set to their defaults:
 
 On Arch linux, the dns proxy can be installed from the AUR at: https://aur.archlinux.org/packages/tcpdnsproxy/.
 
+Openwrt [here](https://github.com/cuu/openwrt/tree/master/package/dns-tcp-socks-proxy)
+
 ```
 wget https://aur.archlinux.org/packages/tc/tcpdnsproxy/PKGBUILD
 makepkg
