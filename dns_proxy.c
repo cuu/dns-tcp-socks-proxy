@@ -34,7 +34,7 @@
 #include <time.h>
 #include <errno.h>
 
-int   SOCKS_PORT  = 9050;
+int   SOCKS_PORT  = 1080;
 char *SOCKS_ADDR  = { "127.0.0.1" };
 int   LISTEN_PORT = 53;
 char *LISTEN_ADDR = { "0.0.0.0" };
@@ -186,6 +186,8 @@ void tcp_query(void *query, response *buffer, int len) {
   // forward dns query
   send(sock, query, len, 0);
   buffer->length = recv(sock, buffer->buffer, 2048, 0);
+
+  close(sock);
 }
 
 int udp_listener() {
