@@ -174,6 +174,8 @@ void tcp_query(void *query, response *buffer, int len) {
 
   // select random dns server
   char*server = dns_servers[rand() % (NUM_DNS - 1)];
+  server[strcspn(server, "\n")] = 0;
+
   in_addr_t remote_dns = inet_addr(server);
   memcpy(tmp, "\x05\x01\x00\x01", 4);
   memcpy(tmp + 4, &remote_dns, 4);
